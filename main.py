@@ -1,4 +1,5 @@
 import pyfiglet # type: ignore
+import os
 from caesar_cipher import caesar_cipher, caesar_cipher_wgap
 
 # GLOBAL VARIABLES
@@ -9,6 +10,7 @@ decryption_pos = []
 
 # 1. Caesar Cipher variables: y ≡ x + gap   (mod 26)
 gap = None
+cor_gaps = []
 unknown_gap = True
 
 # 2. Affine Encyption variables: y ≡ ax + b (mod 26)
@@ -32,9 +34,14 @@ def rm_spaces(msg):
     msg = msg.lower()
     return msg
 
-def display_pos(posibilities):
-    pass
-    
+def display_pos(posibilities, gaps):
+    print()
+    print('Possible Answers: ')
+    print()
+    for i in range(len(posibilities)):
+        print(f'outpout: {posibilities[i]}    gap: {gaps[i]}\n')
+    print()
+        
 def display_single_pos(possibility):
     print()
     print('Analyse.')
@@ -45,6 +52,15 @@ def display_single_pos(possibility):
     print()
 
 
+def save_to_file(data_list, name):
+    os.makedirs('data', exist_ok=True)
+    file_path = os.path.join('data', f'pos{name}')
+    with open(file_path, 'w', encoding='utf-8') as file:
+        for item in data_list:
+
+            file.write(item + '\n')
+            
+    return file_path
 
 
 def interactive_console():
@@ -102,14 +118,42 @@ def interactive_console():
 
         # Gap Unknown
         else:
-            decryption_pos = caesar_cipher(encrypted_msg) 
+            res = caesar_cipher(encrypted_msg) 
+            decryption_pos = res[0]
+            cor_gaps = res[1]
             
-            display_pos(decryption_pos)
+            display_pos(decryption_pos, cor_gaps)
 
 
+
+
+
+        # Option to stock the possibilities in a text file
+        print()
+        stock_outpout = input('Do you want to stock the outpout in a text file [Y/n]')
+        while not stock_outpout in ['Y', 'n']:
+            print()
+            print('Please answer with correctly!')
+            stock_outpout = input('Do you want to stock the outpout in a text file [Y/n]')
+
+        if stock_outpout == 'Y':
+            print()
+            file_name = input('How would you name the file? ')
+            print()
+            file = save_to_file(decryption_pos, file_name)
+            print(f'File created: {file}')
+            
+        else:
+            print()
+            print('End of the programme')
+            print()
+            print('Close and run the programme to decrypt another message!')
+            print()
 
 
 
 
 if __name__ == '__main__':
     interactive_console()
+    
+    

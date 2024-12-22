@@ -1,0 +1,26 @@
+CryptoAnalyst Tool
+
+
+Description:
+This python console app has for goal to help decrypt different encrypted
+messages, using different method of decryptage, the cryptoanalyst will have
+to type the message in the app, then choose among the different methods
+that he think were possibly used to encrypt the message.
+
+Outpout:
+list of every decryptage possibilities, the cryptoanalyst will have to search the one
+which make sens. (A further goal of this app would be to create an neuronal
+network trained to detect messages which make sens in english or french among
+the long list of possibilities)
+
+Features:
+1. input the encrypted message
+2. select a decryptage algortithm
+3. apply the algorithm to the message
+4. display all the possibilities
+5. try another algorithm to the message until the correct answer is found
+
+
+Algorithms:
+Caesar Cipher     affine encryption       permutation      Vigenère's key
+

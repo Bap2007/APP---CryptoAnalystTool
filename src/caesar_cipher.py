@@ -44,3 +44,21 @@ def caesar_cipher(enc_message):
         print(f'Analyse{point*nb_point}')
         
     return possibilities, gaps
+
+
+def display_pos_cc(posibilities, gaps):
+    print()
+    print('Possible Answers: ')
+    print()
+    for i in range(len(posibilities)):
+        print(f'outpout: {posibilities[i]}    gap: {gaps[i]}\n')
+    print()
+        
+def display_single_pos_cc(possibility):
+    print()
+    print('Analyse.')
+    print('Analyse..')
+    print('Analyse...')
+    print()
+    print(f'Decrypted message:  {possibility}')
+    print()
